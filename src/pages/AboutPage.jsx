@@ -17,20 +17,20 @@ export default function AboutPage() {
   useEffect(() => {
     if (reducedMotion) return undefined
     const phrase = statements[index]
-    const complete = typed === phrase
+    const isComplete = typed.length === phrase.length
     const timer = setTimeout(() => {
-      if (!deleting && !complete) setTyped(phrase.slice(0, typed.length + 1))
+      if (!deleting && !isComplete) setTyped((value) => value + phrase.charAt(value.length))
       else if (!deleting) setDeleting(true)
-      else if (typed) setTyped(phrase.slice(0, -1))
-      else { setDeleting(false); setIndex((index + 1) % statements.length) }
-    }, complete && !deleting ? 1900 : deleting ? 28 : 48)
+      else if (typed.length > 0) setTyped((value) => value.slice(0, -1))
+      else { setDeleting(false); setIndex((value) => (value + 1) % statements.length) }
+    }, isComplete && !deleting ? 1900 : deleting ? 30 : 52)
     return () => clearTimeout(timer)
   }, [deleting, index, reducedMotion, typed])
 
   return <section className="relative overflow-hidden py-20 lg:py-28"><div className="blueprint-grid pointer-events-none absolute inset-0 opacity-20" /><Container className="relative"><div className="grid items-center gap-12 lg:grid-cols-[.92fr_1.08fr] lg:gap-16">
     <motion.div initial={reducedMotion ? false : { opacity: 0, x: -24 }} animate={reducedMotion ? {} : { opacity: 1, x: 0 }} transition={{ duration: .65, ease: [0.22, 1, 0.36, 1] }}>
       <p className="text-xs font-extrabold uppercase tracking-[.16em] text-brand">About BluePrint & Beyond</p>
-      <h1 className="mt-4 min-h-[110px] text-4xl font-extrabold leading-[1.08] tracking-[-.055em] text-ink sm:min-h-[104px] sm:text-5xl"><span className="font-['Playfair_Display'] font-semibold italic text-brand">{reducedMotion ? statements[0] : typed}</span><span className="ml-1 inline-block h-[.86em] w-0.5 animate-pulse bg-brand align-[-.08em]" /></h1>
+      <h1 className="mt-4 min-h-[110px] text-4xl font-extrabold leading-[1.08] tracking-[-.055em] text-ink sm:min-h-[104px] sm:text-5xl"><span aria-label={statements[index]} className="font-['Playfair_Display'] font-semibold italic text-brand"><span aria-hidden="true">{reducedMotion ? statements[0] : typed}</span></span><span aria-hidden="true" className="typing-cursor ml-1 inline-block h-[.82em] w-[3px] rounded-full bg-brand align-[-.08em]" /></h1>
       <p className="mt-6 max-w-xl text-[15px] leading-7 text-slate-600">At BluePrint & Beyond 3D LLC, we help architects, developers, builders, and investors visualize every aspect of a project before construction begins. By transforming traditional plans into photorealistic 3D models, cinematic renderings, and immersive walkthroughs, we make complex ideas easier to understand, improve collaboration across teams, reduce costly design revisions, and support faster, more confident decision-making throughout the development process.</p>
       <ul className="mt-8 grid gap-3 sm:grid-cols-2">{benefits.map(([Icon, label], benefitIndex) => <motion.li key={label} initial={reducedMotion ? false : { opacity: 0, y: 12 }} animate={reducedMotion ? {} : { opacity: 1, y: 0 }} transition={{ delay: .25 + benefitIndex * .06, duration: .35 }} className="flex items-center gap-2.5 text-sm font-bold text-ink"><span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-brand/10 text-brand"><Icon size={14} strokeWidth={2.5} /></span>{label}</motion.li>)}</ul>
       <Button to="/contact" className="group mt-9">Learn More <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" /></Button>
