@@ -15,8 +15,8 @@ export default function Header() {
     : <NavLink key={item.to} onClick={() => setOpen(false)} to={item.to} className={({ isActive }) => `${linkStyle} ${isActive ? 'text-brand after:scale-x-100' : ''}`}>{hint}{item.label}</NavLink>)
   return <header className="sticky top-0 z-50 border-b border-slate-200/70 bg-white/90 backdrop-blur-xl"><Container className="flex h-[76px] items-center justify-between gap-6">
     <NavLink to="/" aria-label="BluePrint & Beyond home"><BrandMark /></NavLink>
-    <nav aria-label="Main navigation" className="hidden items-center gap-6 text-[11px] font-extrabold text-ink xl:flex">{links}</nav>
-    <Button to="/contact" className="hidden px-4 py-2.5 text-[11px] lg:inline-flex">Book a Consultation <ArrowUpRight size={14} /></Button>
+    <nav aria-label="Main navigation" className="hidden items-center gap-7 text-sm font-extrabold text-ink xl:flex">{links}</nav>
+    <Button to="/contact" className="hidden px-5 py-3 text-sm lg:inline-flex">Book a Consultation <ArrowUpRight size={16} /></Button>
     <button aria-label="Toggle menu" onClick={() => setOpen(!open)} className="grid h-10 w-10 place-items-center rounded-md border border-slate-200 xl:hidden">{open ? <X size={19} /> : <Menu size={19} />}</button>
   </Container>{open && <div className="border-t border-slate-200 bg-white xl:hidden"><Container className="flex flex-col gap-5 py-6 text-sm font-bold">{links}<Button to="/contact" className="w-full">Book a Consultation</Button></Container></div>}</header>
 }
