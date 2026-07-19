@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import CountUp from 'react-countup'
+import CountUpModule from 'react-countup'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { ArrowLeft, ArrowRight, Play, Quote, Star } from 'lucide-react'
 import Button from '../common/Button'
@@ -15,6 +15,7 @@ const testimonials = [
   { name: 'Emily Carter', role: 'Property Marketing Director', initials: 'EC', quote: 'The walkthrough animations became one of our strongest sales tools. Buyers experienced the property months before completion, which increased engagement and helped our sales team present the project with much greater confidence.' },
 ]
 
+const CountUp = CountUpModule.default ?? CountUpModule
 const trustStats = [['150+', 'Projects Visualized'], ['$50M+', 'Development Value'], ['98%', 'Client Satisfaction'], ['40%', 'Fewer Design Changes']]
 
 function TestimonialCard({ testimonial, position, onSelect }) {
