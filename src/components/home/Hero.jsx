@@ -47,6 +47,6 @@ export default function Hero() {
       <div className="mt-8 flex flex-wrap gap-3"><Button to="/contact">Book a Consultation <ArrowRight size={16} /></Button><a href="#portfolio" className="inline-flex items-center gap-2 rounded-md border border-brand px-5 py-3 text-sm font-bold text-brand transition hover:bg-brand hover:text-white">View Our Work <ArrowRight size={16} /></a></div>
       <div className="mt-7 flex items-center gap-3 text-[10px] font-extrabold uppercase tracking-[.16em] text-ink"><span className="h-px w-9 bg-brand" /><span>{reduceMotion ? phrases[0] : typed}</span><span className="h-3 w-px animate-pulse bg-brand" /></div>
     </motion.div>
-    <div className="relative z-10 mt-14 grid max-w-2xl gap-4 border-t border-slate-300/80 pt-6 sm:grid-cols-3">{assurances.map(([Icon, title, note]) => <div key={title} className="flex gap-2.5"><Icon size={20} className="shrink-0 text-brand" /><div><p className="text-[11px] font-extrabold text-ink">{title}</p><p className="mt-0.5 text-[10px] text-slate-500">{note}</p></div></div>)}</div>
+    <div className="relative z-10 mt-14 grid max-w-2xl gap-5 border-t border-slate-300/80 pt-7 sm:grid-cols-3">{assurances.map(([Icon, title, note]) => <div key={title} className="flex gap-3"><Icon size={25} className="shrink-0 text-brand" /><div><p className="text-sm font-extrabold text-ink">{title}</p><p className="mt-1 text-xs leading-5 text-slate-500">{note}</p></div></div>)}</div>
   </Container></section>
 }
